@@ -2,12 +2,12 @@
   .side-top
     .side-top__items
       .side-name
-        こんちゃん
+        = current_user.name
       .side-links
         = link_to "#", class: "side-links__btn" do
           = icon('fas','edit')
-        = link_to "#", class: "side-links__btn" do
-          = icon('fas', 'cog')
+        = link_to edit_user_path(current_user) do
+          = icon('fas', 'cog', class: 'icon')
   .side-bottom
     .side-bottom__groups
       .group
