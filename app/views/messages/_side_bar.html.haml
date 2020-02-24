@@ -4,18 +4,16 @@
       .side-name
         = current_user.name
       .side-links
-        = link_to "#", class: "side-links__btn" do
-          = icon('fas','edit')
+        =link_to new_group_path do
+          = link_to new_group_path, class: "side-links__btn" do
+            = icon('fas','edit')
         = link_to edit_user_path(current_user) do
           = icon('fas', 'cog', class: 'icon')
   .side-bottom
-    .side-bottom__groups
-      .group
-      TECH::EXPERT
-      .text
-      Yeah!!
-    .side-bottom__groups
-      .group
-      TECH::EXPERT
-      .text
-      Yeah!!
+    - current_user.groups.each do |group|
+      .side-bottom__groups
+        = link_to '#' do
+          .group
+            = group.name
+          .text
+            メッセージはまだありません
