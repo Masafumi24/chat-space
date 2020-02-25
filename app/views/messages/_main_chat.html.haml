@@ -1,31 +1,20 @@
 .main
   .main-header
     .main-header__title
-      test
+      =@group.name
       .main-header__title-text
-        元気に頑張ろう
-    = link_to "#", class: "main-header__btn" do
+        - @group.users.each do |user|
+          = user.name
+    = link_to edit_group_path(@group), class: "main-header__btn" do
       Edit
   .main-message
     .main-message__box
-      .main-message__box-top
-        .main-message__box-top__user 
-          こんちゃん
-          .main-message__box-top__user-text
-            明日もいい天気
-        .main-message__box-top__time
-          2020/0101/
-      .main-message__box-top
-        .main-message__box-top__user
-          こんちゃん
-          .main-message__box-top__user-text
-            明日もいい天気
-        .main-message__box-top__time
-          2020/0101/
+      = render @messages
   .main-form
-    .main-form__box
-      %input{type: "text", class: "main-form__box-text", placeholder: "type a message"}
-      %label{class: "main-form__box-image"}
-        = icon('fas', 'image')
-        %input{type: "file", class: "main-form__box-image__file"}
-      %input{type: "submit", class: "submit-btn", value: "Send"}
+    = form_for [@group, @message] do |f|
+      .main-form__box
+        = f.text_field :content, class: 'main-form__box-text', placeholder: 'type a message'
+        = f.label :image,class: 'main-form__box-image' do
+          = icon('fas', 'image')
+          = f.file_field :image, class: 'main-form__box-image__file'
+        = f.submit 'Send', class: 'submit-btn'
