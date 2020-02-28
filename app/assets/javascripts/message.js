@@ -1,6 +1,5 @@
 $(function(){
   function buildHTML(message){
-    console.log('__buildHTML__');
     if ( message.image ) {
       var html =
       `<div class="main-message__box" data-message-id=${message.id}>
@@ -50,14 +49,15 @@ $('#new_message').on('submit', function(e){
   })
   .done(function(data){
     var html = buildHTML(data);
-    console.log(html);
     $('.main-message').append(html);    
     $('.main-message').animate({ scrollTop: $('.main-message')[0].scrollHeight});  
     $('form')[0].reset();
-    $(".submit-btn").prop('disabled', false);
   })
   .fail(function() {
     alert("メッセージ送信に失敗しました");
-});
+  })
+  .always(function() {
+    $(".submit-btn").prop('disabled', false);
+  });
 });
 });
