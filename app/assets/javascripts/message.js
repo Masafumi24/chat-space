@@ -1,11 +1,10 @@
 $(function(){
-  function buildHTML(message){
-    if ( message.image ) {
+  var buildHTML = function(message) {
+    if ( message.content && message.image ) {
       var html =
-      `<div class="main-message__box" data-message-id=${message.id}>
-          <div class="main-message__box-top">
+      `<div class="main-message__box-top" data-message-id= ${message.id} >
             <div class="main-message__box-top__user">
-              ${message.user_name}
+              ${message.user_name} 
             </div>
               <div class="main-message__box-top__user-text">
                 ${message.content}
@@ -14,15 +13,13 @@ $(function(){
               ${message.created_at}
             </div>
           </div>
-          <img src=${message.image} >
-        </div>`
-      return html;
-    } else {
+          <img src= ${message.image}, class="main-message__box-top__img" >
+      </div>`
+    } else if (message.content) {
       var html =
-      `<div class="main-message__box" data-message-id=${message.id}>
-          <div class="main-message__box-top">
+      `<div class="main-message__box-top" data-message-id= ${message.id} >
             <div class="main-message__box-top__user">
-              ${message.user_name}
+              ${message.user_name} 
             </div>
               <div class="main-message__box-top__user-text">
                 ${message.content}
@@ -31,10 +28,23 @@ $(function(){
               ${message.created_at}
             </div>
           </div>
-        </div>`
+      </div>`
+     } else if (message.image) {
+            var html =
+            `<div class="main-message__box-top" data-message-id= ${message.id}>
+                  <div class="main-message__box-top__user">
+                    ${message.user_name}
+                  </div>
+                  <div class="main-message__box-top__time">
+                    ${message.created_at}
+                  </div>
+                </div>
+                <img src=${message.image}, class="main-message__box-top__img" >
+            </div>`
+      };
       return html;
     };
-  }
+
 $('#new_message').on('submit', function(e){
   e.preventDefault();
   var formData = new FormData(this);
@@ -60,4 +70,29 @@ $('#new_message').on('submit', function(e){
     $(".submit-btn").prop('disabled', false);
   });
 });
+  var reloadMessages = function() {
+    var last_message_id = $('.main-message__box-top:last').data("message-id");
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      datatype: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages){
+      if (messages.length !== 0) {
+        var insertHTML = '';
+        $.each(messages, function(i, message) {
+          insertHTML += buildHTML(message)
+        });
+        $('.main-message').append(insertHTML);
+        $('.main-message').animate({ scrollTop: $('.main-message')[0].scrollHeight});
+        }
+    })
+    .fail(function(){
+      alert('error');
+    });
+  };
+  if (document.location.href.match(/\/groups\/\d+\/messages/)) {
+    setInterval(reloadMessages, 7000);
+  }
 });
