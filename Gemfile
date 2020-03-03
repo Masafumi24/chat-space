@@ -44,12 +44,13 @@ group :development, :test do
 end
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-#   gem 'byebug', platform: :mri
-#   gem 'rspec-rails'
-#   gem 'factory_bot_rails'
-#   gem 'rails-controller-testing'
-#   gem 'faker'
-# end
+group :development, :test do
+  gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'faker'
+end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -71,4 +72,3 @@ gem 'mini_magick'
 group :production do
   gem 'unicorn', '5.4.1'
 end
-gem 'rvm1-capistrano3', require: nil
