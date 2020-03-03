@@ -42,6 +42,7 @@ $white:#ffffff;
           font-size: 16px;
           line-height: 20px;
           font-weight: bold;
+          color: white;
         }
 
         .side-links {
@@ -50,6 +51,13 @@ $white:#ffffff;
           text-align: right;
 
           &__btn {
+            color: white;
+            line-height: 20px;
+            text-decoration: none;
+            margin-left: 5px;
+          }
+
+          &__icon {
             color: white;
             line-height: 20px;
             text-decoration: none;
@@ -65,18 +73,20 @@ $white:#ffffff;
 
       &__groups {
         padding: 20px 20px 40px 20px;
-        height: 65px;
+        height: 80px;
         width: calc($sidewidth - 40px);
-        font-size: 15px;
-        color: white;
-        font-weight: bold;
 
         .group {
           font-size: 15px;
+          text-decoration: none;
+          color: white;
+          font-weight: bold;
         }
         .text {
           font-size: 11px;
           margin-top: 5px;
+          text-decoration: none;
+          color: white;
         }
       }
     }
