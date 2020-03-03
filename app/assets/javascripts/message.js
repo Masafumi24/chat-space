@@ -2,44 +2,41 @@ $(function(){
   var buildHTML = function(message) {
     if ( message.content && message.image ) {
       var html =
-      `<div class="main-message__box-top" data-message-id= ${message.id} >
-            <div class="main-message__box-top__user">
-              ${message.user_name} 
-            </div>
-              <div class="main-message__box-top__user-text">
-                ${message.content}
-              </div>
-            <div class="main-message__box-top__time">
-              ${message.created_at}
-            </div>
-          </div>
-          <img src= ${message.image}, class="main-message__box-top__img" >
-      </div>`
+      `<div class="main-message__box-top" data-message-id=${message.id}>
+<div class="main-message__box-top__user">
+  ${message.user_name}
+<div class="main-message__box-top__user-text">
+  ${message.content}
+  <img src=${message.image}, class="main-message__box-top__img" >
+</div>
+</div>
+<div class="main-message__box-top__time">
+  ${message.created_at}
+</div>
+</div>`
     } else if (message.content) {
       var html =
-      `<div class="main-message__box-top" data-message-id= ${message.id} >
-            <div class="main-message__box-top__user">
-              ${message.user_name} 
-            </div>
-              <div class="main-message__box-top__user-text">
-                ${message.content}
-              </div>
-            <div class="main-message__box-top__time">
-              ${message.created_at}
-            </div>
-          </div>
+      `<div class="main-message__box-top" data-message-id=${message.id}>
+      <div class="main-message__box-top__user">
+        ${message.user_name}
+      <div class="main-message__box-top__user-text">
+        ${message.content}
+      </div>
+      </div>
+      <div class="main-message__box-top__time">
+        ${message.created_at}
+      </div>
       </div>`
      } else if (message.image) {
             var html =
-            `<div class="main-message__box-top" data-message-id= ${message.id}>
-                  <div class="main-message__box-top__user">
-                    ${message.user_name}
-                  </div>
-                  <div class="main-message__box-top__time">
-                    ${message.created_at}
-                  </div>
-                </div>
-                <img src=${message.image}, class="main-message__box-top__img" >
+            `<div class="main-message__box-top" data-message-id=${message.id}>
+            <div class="main-message__box-top__user">
+              ${message.user_name}
+              <img src=${message.image}, class="main-message__box-top__img" >
+            </div>
+            <div class="main-message__box-top__time">
+              ${message.created_at}
+            </div>
             </div>`
       };
       return html;
