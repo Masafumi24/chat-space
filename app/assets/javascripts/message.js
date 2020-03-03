@@ -1,5 +1,6 @@
 $(function(){
   var buildHTML = function(message) {
+    console.log(message.image)
     if ( message.content && message.image ) {
       var html =
       `<div class="main-message__box-top" data-message-id= ${message.id} >
@@ -13,7 +14,7 @@ $(function(){
               ${message.created_at}
             </div>
           </div>
-          <img src= ${message.image}, class="main-message__box-top__img" >
+          <img src= ${message.image} class="main-message__box-top__img" >
       </div>`
     } else if (message.content) {
       var html =
@@ -39,7 +40,7 @@ $(function(){
                     ${message.created_at}
                   </div>
                 </div>
-                <img src=${message.image}, class="main-message__box-top__img" >
+                <img src=${message.image} class="main-message__box-top__img" >
             </div>`
       };
       return html;
